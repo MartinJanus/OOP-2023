@@ -5,63 +5,157 @@ import processing.core.PApplet;
 public class BugZap extends PApplet
 {
 
+	//player values
+	float playerX;
+	float playerY; 
+	float playerWidth;
+	float playerHeight;
+	float playerSpeed;
+
+	//bug values 
+	float bugX;
+	float bugY;
+	float bugWidth;
+
+
+	
+	int score;
+	int frame;
+
+
 	public void settings()
 	{
-		size(500, 500);
+		size(1000, 1000);
+		// fullScreen();
 	}
 
-	public void setup() {
-		colorMode(HSB);
+	public void setup() 
+	{
+		colorMode(RGB);
 		background(0);
-
-		x1 = random(0, width);
-		x2 = random(0, width);
-		y1 = random(0, height);
-		y2 = random(0, height);
-
-		float range = 5;
-
-		x1dir = random(-range, range);
-		x2dir = random(-range, range);
-		y1dir = random(-range, range);
-		y2dir = random(-range, range);
-
-		smooth();
 		
+		//player Settings
+		playerX = 10; 
+		playerY = 10; 
+		playerWidth = 40;
+		playerSpeed = 3;  
+		playerHeight = playerWidth / 2;
+
+		playerX = (width / 2) - (playerWidth / 2); 
+		playerY = height - playerWidth;
+
+		bugX = 10;
+		bugY = 10;
+		bugWidth = 40;
+
+
+		frame = 60;
 	}
 
-	float x1, y1, x2, y2;
-	float x1dir, x2dir, y1dir, y2dir;
-	float c = 0;
-	
+
+
 	public void draw()
 	{	
+		background(0);
+		// circle(mouseX, mouseY, 10);
+		drawPlayer();
+		drawBug();
+
+
+	}
+
+	// float x, float y, float w
+	public void drawPlayer()
+	{
+
 		strokeWeight(2);
-		stroke(c, 255, 255);
-		c = (c + 1f) % 255;
-		line(x1, y1, x2, y2);
+		stroke(57, 255, 20);
+		fill(0);
+		playerHeight = playerWidth / 2;
+		rect(playerX, playerY, playerWidth, playerHeight);
+		ellipse(playerX + playerWidth / 2, playerY, playerWidth, playerHeight);
 
-		x1 += x1dir;
-		x2 += x2dir;
-		y1 += y1dir;
-		y2 += y2dir;
+
+	}
+	//float x, float y, float w
+	public void drawBug()
+	{
+		strokeWeight(2);
+		stroke(57, 255, 20);
+		fill(0);
+		line(bugX, bugY, bugX + bugWidth, bugY + bugWidth);
+		line(bugX, bugY + bugWidth, bugX + bugWidth, bugY);
+
+	}
+
+	public void resetBug()
+	{
+		bugX = random(0,width);
+		bugY = 10;
+	}
+	
+	
+	public void keyPressed()
+	{
+		if(keyCode == LEFT)
+		{
+			System.out.println("Left arrow pressed");
+			playerX -= playerSpeed; 
+		}
+		if(keyCode == RIGHT)
+		{
+			System.out.println("Right arrow pressed");
+			playerX += playerSpeed;
+		}
+		if(keyCode == ' ')
+		{
+			System.out.println("Space key pressed");
+			//to shoot 
+			float x = (int) playerX + playerWidth / 2;
+			float y = 0;
+			line(x, playerY, x, y);
+			if((x>=bugX) &&( x <= bugX + bugWidth))
+			{
+				y = bugY + bugWidth;
+				resetBug();
+				score++;
+			}
+		}
 		
-		if (x1 < 0 || x1 > width)
+		if((frameCount % frame) == 0)
 		{
-			x1dir = - x1dir;
-		}
-		if (y1 < 0 || y1 > height)
-		{
-			y1dir = - y1dir;
+			bugX += random(-100, 100);
+			bugY += 30;
+			frame -= 1;
 		}
 
-		if (x2 < 0 || x2 > width)
+		if(playerX < 0)
 		{
-			x2dir = - x2dir;
+			playerX = 0;
 		}
-		if (y2 < 0 || y2 > height)
+		if(playerX + playerWidth > width)
 		{
-			y2dir = - y2dir;
+			playerX = width - playerWidth;
+		}
+
+		if(bugX < 0)
+		{
+			bugX = 0;
+		}
+		if(bugX + bugWidth > width)
+		{
+			bugX = width - bugWidth;
+		}
+		if(bugY + bugWidth > height)
+		{
+			resetBug();
 		}
 	}
+
+	// public void game()
+	// {
+		
+
+	// }
+
 }
