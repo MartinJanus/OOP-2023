@@ -135,8 +135,41 @@ public class Loops extends PApplet {
 					} 
 				}
 				break;
-			case 'g':
-				
+			case 55: //'g'
+				float border = 70.0f; 
+				int count = 10; 
+				int sideCount = -5;
+				for(int i = 0; i<=count; i++)
+				{	
+					stroke(102,255,153);
+					fill(102,255,153);
+					float gap = ((width - (border * 2.0f)) / count);
+					float x = border + (gap * i);
+					text(sideCount, gap - 50, x);
+					text(sideCount, x, gap - 50);
+					line(x, border , x , height - border);
+					line(border, x , width - border, x);
+					sideCount++;
+				}
+				break;
+			
+			case 56:
+				for(int i = 0; i < 20; i++)
+				{
+					for(int j = 0; j < 20; j++)
+					{
+						if((j + i) % 2 == 0)
+						{
+							fill(150, 255, 255);
+							rect(j * 50, i * 50, 50, 50);
+						}
+						else
+						{
+							fill(120, 255, 255);
+							rect(j * 50, i * 50, 50, 50 );
+						}
+					}
+				}
 
 			default:
 				break;
