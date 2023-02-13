@@ -119,6 +119,7 @@ public class Loops extends PApplet {
 				}
 				break;
 			case 8: 
+				background(255);
 				for(int i = 0; i < 10; i++)
 				{
 					fill(i*20, 255, 255);
@@ -126,6 +127,7 @@ public class Loops extends PApplet {
 				}
 				break;
 			case 9: 
+				background(255);
 				for(int i = 0; i < 10; i++)
 				{
 					for(int j = 0; j < 10; j++)
@@ -169,6 +171,38 @@ public class Loops extends PApplet {
 							rect(j * 50, i * 50, 50, 50 );
 						}
 					}
+				}
+				break;
+
+			case 52: 
+				background(255);
+				stroke(0);
+				float centerX = width / 2;
+				float centerY = height / 2;
+				float radius = 150;
+			
+				// Draw 5 lines coming out from the center in a pentagon shape
+				for (int i = 0; i < 5; i++) 
+				{
+					float angle = TWO_PI * i / 5 + 3 * PI / 2;
+					float x = centerX + radius * cos(angle);
+					float y = centerY + radius * sin(angle);
+					line(centerX, centerY, x, y);
+				}
+				break;
+			case 54: 
+				stroke(255);
+				float cX = width / 2;
+				float cY = height / 2;
+				float r = 150;
+				for (int i = 0; i < 5; i++) 
+				{
+					float angle = TWO_PI * i / 5;
+					float x = cX + r * cos(angle);
+					float y = cY + r * sin(angle);
+					float x2 = cX + r * cos(angle + TWO_PI / 5);
+					float y2 = cY + r * sin(angle + TWO_PI / 5);
+					line(x, y, x2, y2);
 				}
 
 			default:
