@@ -24,8 +24,8 @@ public class Loops extends PApplet {
 	float off = 0;
 
 	public void draw() {
-		background(0);
 		fill(255);
+		background(0);
 		noStroke();
 
 		switch (mode) {
@@ -88,8 +88,55 @@ public class Loops extends PApplet {
 					fill(0, 0, 255);
 					rect(250,350,500,300);
 				}
-
-
+				break;
+			case 4: 
+				for(int i = 0; i < 10; i++)
+				{
+					fill(i*20, 255, 255);
+					rect(i * 100, 0, 100, 1000);
+				}
+				break;
+			case 5:
+				for(int i = 0; i < 10; i++)
+				{
+					fill(i*20, 255, 255);
+					rect(i * 100, i * 100, 100, 100);
+				}
+				break;
+			case 6: 
+				for(int i = 0; i < 10; i++)
+				{
+					fill(i*20, 255, 255);
+					rect(i * 100, i * 100, 100, 100); 
+					rect(900 - (i * 100), i * 100, 100, 100); //reverse of it left corner must be 900 on X axis
+				}
+				break;
+			case 7:
+				for(int i = 0; i < 11; i++)
+				{
+					fill(i*20, 255, 255);
+					ellipse(500, 500, 1000 - (i * 100), 1000 - (i*100)); //shrinking the size of the ellipse on each iteration by 100 pxl
+				}
+				break;
+			case 8: 
+				for(int i = 0; i < 10; i++)
+				{
+					fill(i*20, 255, 255);
+					ellipse(50 + (i * 100), 50, 100, 100);
+				}
+				break;
+			case 9: 
+				for(int i = 0; i < 10; i++)
+				{
+					for(int j = 0; j < 10; j++)
+					{
+						fill(j*(20 - i), 255, 255);
+						ellipse(50 + (i * 100), 50 + (j * 100), 100, 100);
+					} 
+				}
+				break;
+			case 'g':
+				
 
 			default:
 				break;
