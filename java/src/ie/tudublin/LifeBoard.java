@@ -25,13 +25,13 @@ public class LifeBoard{
     public int countCells(int row, int col)
     {
         int count = 0;
-        for(int i = -1; i <= 1; i++)
+        for(int i = row -1; i <= row + 1; i++)
         {
-            for(int j = -1; j <= 1; j++)
+            for(int j = col -1; j <= col + 1; j++)
             {
-                if (!( i == 0 && j == 0))
+                if (!( i == row && j == col))
                 {
-                    if (getCell(row + i, col + j))
+                    if (getCell(i, j))
                     {
                         count++;
                     }
@@ -68,12 +68,17 @@ public class LifeBoard{
                     {
                         next[row][col] = true;
                     }
+                    else
+                    {
+                        next[row][col] = false;
+                    }
                 }
             }
         }
-        //boolean temp[][] = board;
+        boolean temp[][];
+        temp = board;
         board = next; 
-        //next = temp;    
+        next = temp;    
     }
 
     public LifeBoard(int size, PApplet p)
@@ -93,7 +98,7 @@ public class LifeBoard{
             for(int col = 0; col < size; col++)
             {
                 float dice = p.random(0,1);
-                board[row][col] = (dice <=0.07f);
+                board[row][col] = (dice <=0.5f);
             }
         }
     }
