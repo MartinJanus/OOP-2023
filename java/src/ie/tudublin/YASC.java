@@ -107,7 +107,7 @@ public class YASC extends PApplet
 				{
 					fill(100, 255, 255);
 				}
-				float x = PApplet.map(col, 0, size, 0, width,);
+				float x = PApplet.map(col, 0, size, 0, width);
 				float y = PApplet.map(row, 0, size, 0, height);
 
 				rect(x,y,10,10);
