@@ -94,6 +94,30 @@ public class YASC extends PApplet
 		println(s1);
 		*/
 	}
+	public void TwoD()
+	{
+		int size = 100;
+		boolean[][] board = new boolean[100][100];
+
+		for(int row = 0; row < size; row++)
+		{
+			for(int col = 0; col < size; col++)
+			{
+				if(board[row][col])
+				{
+					fill(100, 255, 255);
+				}
+				float x = PApplet.map(col, 0, size, 0, width,);
+				float y = PApplet.map(row, 0, size, 0, height);
+
+				rect(x,y,10,10);
+			}
+		}
+
+
+		
+	}
+
 
 	public void draw()
 	{	
